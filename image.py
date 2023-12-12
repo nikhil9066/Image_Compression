@@ -16,6 +16,45 @@ def calculate_accuracy_percentage(mse, max_possible_mse):
 def normalize_image(image):
     return image / np.max(image)
 
+# QR Compression function
+def qr_compress(image, k):
+    Q, R = np.linalg.qr(image)
+    compressed_Q = Q[:, :k]
+    compressed_R = R[:k, :]
+    compressed_image = np.dot(compressed_Q, compressed_R)
+
+    accuracy_before = calculate_mse(normalize_image(image), normalize_image(compressed_image))
+    max_possible_mse = 1.0  # Maximum possible MSE when all pixel values are different (normalized)
+    accuracy_percentage_before = calculate_accuracy_percentage(accuracy_before, max_possible_mse)
+
+    print(f'MSE Before Compression (QR): {accuracy_before}')
+    print(f'Accuracy Before Compression (QR): {accuracy_percentage_before}%\n')
+
+    print('Q matrix (Orthogonal Matrix):')
+    print(compressed_Q)
+    print('\nR matrix (Upper Triangular Matrix):')
+    print(compressed_R)
+
+    return compressed_image, compressed_Q, compressed_R
+
+# QR Decompression function
+def qr_decompress(compressed_Q, compressed_R):
+    reconstructed_image = np.dot(compressed_Q, compressed_R)
+
+    accuracy_after = calculate_mse(normalize_image(original_image), normalize_image(reconstructed_image))
+    max_possible_mse = 1.0  # Maximum possible MSE for the original image (normalized)
+    accuracy_percentage_after = calculate_accuracy_percentage(accuracy_after, max_possible_mse)
+
+    print(f'MSE After Decompression (QR): {accuracy_after}')
+    print(f'Accuracy After Decompression (QR): {accuracy_percentage_after}%\n')
+
+    print('Q matrix (Orthogonal Matrix):')
+    print(compressed_Q)
+    print('\nR matrix (Upper Triangular Matrix):')
+    print(compressed_R)
+
+    return reconstructed_image, accuracy_after, accuracy_percentage_after
+
 # SVD Compression function
 def svd_compress(image, k):
     U, S, Vt = np.linalg.svd(image, full_matrices=False)
@@ -106,14 +145,12 @@ max_pixel_value = np.max(image)
 print(f"Min Pixel Value: {min_pixel_value}")
 print(f"Max Pixel Value: {max_pixel_value}")
 
-
 original_image = np.array(Image.open(image_path).convert("L"))  # Convert to grayscale
 
 # Display the original image
 plt.imshow(original_image, cmap='gray')
 plt.title('Original Image')
 plt.show()
-
 
 # Compression and Decompression using SVD
 print("Compression and Decompression using SVD")
