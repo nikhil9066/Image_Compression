@@ -4,3 +4,5 @@ from PIL import Image
 
 # Load the image
 image_path = "1800.jpeg"
+
+image = np.array(Image.open(image_path))
