@@ -152,6 +152,23 @@ plt.imshow(original_image, cmap='gray')
 plt.title('Original Image')
 plt.show()
 
+# Compression and Decompression using QR Factorization
+print("Compression and Decompression using QR Factorization")
+k_qr = 50  # Adjust this value based on the desired compression level for QR
+compressed_image_qr, compressed_Q_qr, compressed_R_qr = qr_compress(original_image, k_qr)
+reconstructed_image_qr, _, _ = qr_decompress(compressed_Q_qr, compressed_R_qr)
+
+# Evaluate accuracy for QR
+evaluate_accuracy(original_image, reconstructed_image_qr, 'QR')
+
+# Visualization for QR
+plt.imshow(compressed_image_qr, cmap='gray')
+plt.title('Compressed Image (QR)')
+plt.show()
+plt.imshow(reconstructed_image_qr, cmap='gray')
+plt.title('Reconstructed Image (QR)')
+plt.show()
+
 # Compression and Decompression using SVD
 print("Compression and Decompression using SVD")
 k_svd = 50  # Adjust this value based on the desired compression level for SVD
