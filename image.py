@@ -30,10 +30,8 @@ def qr_compress(image, k):
     print(f'MSE Before Compression (QR): {accuracy_before}')
     print(f'Accuracy Before Compression (QR): {accuracy_percentage_before}%\n')
 
-    print('Q matrix (Orthogonal Matrix):')
-    print(compressed_Q)
-    print('\nR matrix (Upper Triangular Matrix):')
-    print(compressed_R)
+    print('Q matrix (Orthogonal Matrix):\n',compressed_Q)
+    print('\nR matrix (Upper Triangular Matrix):\n',compressed_R)
 
     return compressed_image, compressed_Q, compressed_R
 
@@ -48,10 +46,8 @@ def qr_decompress(compressed_Q, compressed_R):
     print(f'MSE After Decompression (QR): {accuracy_after}')
     print(f'Accuracy After Decompression (QR): {accuracy_percentage_after}%\n')
 
-    print('Q matrix (Orthogonal Matrix):')
-    print(compressed_Q)
-    print('\nR matrix (Upper Triangular Matrix):')
-    print(compressed_R)
+    print('Q matrix (Orthogonal Matrix):\n',compressed_Q)
+    print('\nR matrix (Upper Triangular Matrix):\n',compressed_R)
 
     return reconstructed_image, accuracy_after, accuracy_percentage_after
 
@@ -87,12 +83,9 @@ def svd_compress(image, k):
     print(f'MSE Before Compression (SVD): {accuracy_before}')
     print(f'Accuracy Before Compression (SVD): {accuracy_percentage_before}%\n')
 
-    print('U matrix (Left Singular Vectors):')
-    print(compressed_U)
-    print('\nS matrix (Diagonal Singular Values):')
-    print(compressed_S)
-    print('\nVt matrix (Right Singular Vectors):')
-    print(compressed_Vt)
+    print('U matrix (Left Singular Vectors):\n',compressed_U)
+    print('\nS matrix (Diagonal Singular Values):\n',compressed_S)
+    print('\nVt matrix (Right Singular Vectors):\n',compressed_Vt)
     
     return compressed_image, compressed_U, compressed_S, compressed_Vt
 
@@ -115,12 +108,9 @@ def svd_decompress(compressed_U, compressed_S, compressed_Vt):
     print(f'MSE After Decompression (SVD): {accuracy_after}')
     print(f'Accuracy After Decompression (SVD): {accuracy_percentage_after}%\n')
 
-    print('U matrix (Left Singular Vectors):')
-    print(compressed_U)
-    print('\nS matrix (Diagonal Singular Values):')
-    print(compressed_S)
-    print('\nVt matrix (Right Singular Vectors):')
-    print(compressed_Vt)
+    print('U matrix (Left Singular Vectors):\n',compressed_U)
+    print('\nS matrix (Diagonal Singular Values):\n',compressed_S)
+    print('\nVt matrix (Right Singular Vectors):\n',compressed_Vt)
 
     return reconstructed_image, accuracy_after, accuracy_percentage_after
 
