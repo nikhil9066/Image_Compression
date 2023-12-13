@@ -27,3 +27,32 @@ Install dependencies using:
 
 ```bash
 pip install numpy matplotlib Pillow
+```
+
+## Installation
+
+### Prerequisites
+
+Before you begin, ensure you have Python 3.x installed on your system. If not, you can download and install it from [python.org](https://www.python.org/downloads/).
+
+### Clone the Repository
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/your-username/image-compression.git
+    cd image-compression
+    ```
+
+### Install Dependencies
+
+2. Install the required dependencies using `pip`:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+This will install NumPy, Matplotlib, and Pillow (PIL), which are necessary for the image compression and decompression script.
+
+Now you're ready to use the image compression and decompression script.
+
